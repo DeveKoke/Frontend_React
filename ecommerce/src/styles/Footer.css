@@ -1,0 +1,24 @@
+@import './variables';
+
+.footer-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    hr{
+        width: 100%;
+        border-color:var(--third-color);
+    }
+}
+.footer-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
+}
+.footer-section{
+    ul{
+        padding-left: 0;
+    }
+}

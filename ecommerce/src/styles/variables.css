@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+
+
+:root{
+    --primary-color: rgb(212, 212, 226);
+    --secondary-color : rgb(44, 44, 53);
+    --first-blue-color: rgb(28, 93, 223);
+    --third-color: grey;
+
+}

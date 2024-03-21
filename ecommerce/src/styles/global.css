@@ -1,0 +1,19 @@
+@import './variables.css';
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+
+
+body{
+    margin: 0;
+}
+ul{
+    padding-left: 15px;
+}
+li{
+    text-decoration: none;
+    list-style: none;
+}
+input[type=text]{
+    border-radius: 28px;
+    height: 30px;
+    text-indent: 15px;
+}
