@@ -7,8 +7,6 @@ header{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
 }
 .title-header-bar{
     margin-left: 14px;
@@ -40,4 +38,21 @@ header{
 .header-icon{
     margin: 0 15px ;
     width: 32px;
+}
+.header-icon:hover{
+    cursor: pointer;
+}
+.numberTrolley{
+    background-color: purple;
+    color: white;
+    font-family:  "Madimi One", sans-serif;
+    border-radius: 20px;
+    padding: 3px 9px;
+    font-size: 1em;
+    margin: -10px 0px 12px -23px
+}
+.trolley-container{
+    display: flex;
+    flex-direction: row;
+    padding-right: 5px;
 }

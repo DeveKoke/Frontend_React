@@ -4,8 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
+    padding-top: 15px;
     hr{
         width: 100%;
         border-color:var(--third-color);

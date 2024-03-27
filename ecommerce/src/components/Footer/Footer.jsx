@@ -1,11 +1,14 @@
 import '../../styles/global.css';
 import '../../styles/Footer.css';
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/ThemeContext.jsx';
 
 
 const Footer = () => {
+  const { toggleTheme } = useContext(ThemeContext);
   return (
     <>
-    <footer className='footer-wrapper'>
+    <footer className= {`footer-wrapper theme-${toggleTheme}`}>
       <div className='footer-container'>
           <div className='footer-section'>
             <h3>Contacto</h3>

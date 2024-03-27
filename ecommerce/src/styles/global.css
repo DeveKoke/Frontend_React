@@ -17,3 +17,15 @@ input[type=text]{
     height: 30px;
     text-indent: 15px;
 }
+/* TOGGLE THEME CLASSES */
+.link-light, .link-dark{
+    text-decoration: none;
+}
+.theme-light, .link-light{
+    background-color: var(--third-color);
+    color: var(--dark-blue-color);
+}
+.theme-dark, .link-dark{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
