@@ -1,0 +1,10 @@
+@import './variables.css';
+
+.offer-box{
+    color: var(--primary-color);
+    background: rgb(4,4,60);
+    background: linear-gradient(90deg, rgba(4,4,60,1) 27%, rgb(61, 70, 124) 86%);
+    padding: 20px;
+    margin: 30px 70px;
+    text-align: center;
+}
