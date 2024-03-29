@@ -1,5 +1,7 @@
+// ESTILOS
 import '../../../styles/global.css';
 import '../../../styles/ProductsList.css';
+// HOOKS
 import { useContext } from 'react';
 import { ThemeContext } from '../../../context/ThemeContext.jsx';
 import { TrolleyContext } from '../../../context/TrolleyContext.jsx';
@@ -10,12 +12,13 @@ const ProductsList = ({...props}) => {
   // const [selectedItem, setSelectedItem] = useState('');
 
 
-  const handleItem = (itemName, itemPrice, itemImg) => {
+  const handleItem = (itemName, itemPrice, itemImg, itemId) => {
     const itemInfo = {
+          id: itemId,       
           title: itemName,
           price: itemPrice,
           img: itemImg,
-        };
+         };
     setItemsList([...itemsList, itemInfo]);
     console.log(itemsList);
   }
@@ -55,7 +58,7 @@ const ProductsList = ({...props}) => {
             <p className='product-card-description'>{props.description} </p>
           </div>
           <p className='product-card-price'>${props.price} </p>
-          <button onClick={() => handleItem(props.title, props.price, props.img)}>Añadir al carrito</button>
+          <button onClick={() => handleItem(props.title, props.price, props.img, props.id)}>Añadir al carrito</button>
         </div>
       
     </>

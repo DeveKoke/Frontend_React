@@ -1,0 +1,16 @@
+@import './variables';
+
+
+.userForm-Container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--third-color);
+    padding: 1em;
+    width: 50%;
+    margin: 1em auto;
+    border-radius: 10px;
+    label{
+        padding: 13px 0px 2px;
+    }
+}

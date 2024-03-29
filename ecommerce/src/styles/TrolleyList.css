@@ -1,0 +1,40 @@
+@import './variables';
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+
+
+.Trolley-Section{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+    h2, h3{
+        font-family:  "Madimi One", sans-serif;
+    }
+}
+.TrolleyContainer{
+    display: flex;
+    flex-direction: column;
+}
+.trolley-item-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: solid var(--third-color) 3px;
+    img{
+        width: 100px;
+        height: 7em;
+        object-fit: contain; 
+        padding: 10px;
+    }
+}
+.trolley-item-info{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    h3, p{
+        margin:3px 0;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+}

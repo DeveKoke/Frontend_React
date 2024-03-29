@@ -21,6 +21,7 @@ const Main = ({searchTerm}) => {
         description={item.description}
         img={item.image}
         price={item.price}
+        id={item.id}
         key={item.id} />
     )) ;
   };
