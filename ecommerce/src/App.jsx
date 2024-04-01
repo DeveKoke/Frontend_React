@@ -20,9 +20,9 @@ import './styles/global.css';
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const [itemsList, setItemsList] = useState([]);
+  const [itemsCart, setItemsCart] = useState([]);
   const productsListArr ={
-    itemsList, setItemsList
+    itemsCart, setItemsCart
   };
 
   return (

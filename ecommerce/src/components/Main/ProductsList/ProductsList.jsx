@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 const ProductsList = ({...props}) => {
   const { toggleTheme } = useContext(ThemeContext);
-  const { itemsList, setItemsList } = useContext(TrolleyContext);
+  const { itemsCart, setItemsCart } = useContext(TrolleyContext);
 
 
   const handleItem = (itemName, itemPrice, itemImg, itemId) => {
@@ -19,8 +19,8 @@ const ProductsList = ({...props}) => {
           price: itemPrice,
           img: itemImg,
          };
-    setItemsList([...itemsList, itemInfo]);
-    console.log(itemsList);
+    setItemsCart([...itemsCart, itemInfo]);
+    console.log(itemsCart);
   }
 
   return (

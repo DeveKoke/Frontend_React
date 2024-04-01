@@ -3,16 +3,16 @@ import { TrolleyContext } from "../../../context/TrolleyContext.jsx";
 import '../../../styles/TrolleyList.css'
 
 const TrolleyList = () => {
-  const { itemsList } = useContext(TrolleyContext);
+  const { itemsCart } = useContext(TrolleyContext);
   const [totalPrice, setTotalPrice] = useState(0)
 
   const totalItems = {};  //Contar cuántas veces se repite el mismo producto dentro de itemList
-  itemsList.forEach(item => {
+  itemsCart.forEach(item => {
     totalItems[item.id] = (totalItems[item.id] || 0) + 1;
   });
   
-  //Hacemos filtro de itemsList para solo mostrar un elemento en caso de que se repita dentro de itemsList
-  const uniqueItems = itemsList.filter(  
+  //Hacemos filtro de itemsCart para solo mostrar un elemento en caso de que se repita dentro de itemsCart
+  const uniqueItems = itemsCart.filter(  
     (item, index, self) =>
       index === self.findIndex((t) => t.id === item.id)
   );
@@ -20,14 +20,14 @@ const TrolleyList = () => {
   useEffect(() => {
     const totalPriceCalculation = () => {
       let totalPrice = 0;
-      itemsList.forEach(item => {
+      itemsCart.forEach(item => {
         totalPrice += item.price;
       });
       return totalPrice.toFixed(2);
     };
   
     setTotalPrice(totalPriceCalculation());
-  }, [itemsList]);
+  }, [itemsCart]);
 
 
   const printItemList = () => {
