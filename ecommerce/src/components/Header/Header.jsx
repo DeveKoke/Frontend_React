@@ -34,8 +34,8 @@ const Header = ({ setSearchTerm }) => {
         <div className='header-icon-container'>
           <img className='header-icon'src="/themes.png" alt= "cambiar tema" onClick={toggleThemeHandler}/>
           <img className='header-icon' src="/heart.png" alt="favoritos" />
-          <img className='header-icon' src="/avatar.png" alt="login usuario" />
-          <Link to="/trolley"><div className='trolley-container'><img className='header-icon' src="/shopping-cart.png" alt="carrito" />{itemQuantity > 0 && <span className="numberTrolley">{itemQuantity}</span>}</div></Link> 
+          <Link to={'login'}> <img className='header-icon' src="/avatar.png" alt="login usuario" /></Link>
+          <Link to="/cart"><div className='trolley-container'><img className='header-icon' src="/shopping-cart.png" alt="carrito" />{itemQuantity > 0 && <span className="numberTrolley">{itemQuantity}</span>}</div></Link> 
           {/* <div><img className='header-icon' src="/shopping-cart.png" alt="carrito" /><span className="numberTrolley">  {itemQuantity}  </span> </div>  */}
         </div>
     </header>

@@ -1,11 +1,11 @@
 import { useRef, useContext} from 'react';
-import { useUserHandleInfo } from '../../../reducer/userForm_Reducer.js';
-import { OfferContext } from '../../../context/OfferContext.jsx';
+import { useUserHandleInfo } from '../../reducer/userForm_Reducer.js';
+import { OfferContext } from '../../context/OfferContext.jsx';
+//Estilos
+import '../../styles/LoginForm.css';
 
-import '../../../styles/UserForm.css';
 
-
-const UserForm = () => {
+const LoginForm = () => {
   const {setUserName} = useContext(OfferContext)
   const [userInfo, dispatch] = useUserHandleInfo();
   const nombreRef = useRef();
@@ -55,4 +55,4 @@ const UserForm = () => {
   );
 };
 
-export default UserForm;
+export default LoginForm;

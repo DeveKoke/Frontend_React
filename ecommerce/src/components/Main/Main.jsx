@@ -10,6 +10,7 @@ const Main = ({searchTerm}) => {
 
   const { toggleTheme } = useContext(ThemeContext);
   
+  //Filtrar para la búsqueda.
   const printProductList = () => {
     const filteredProducts = ecommerceData.filter(item =>
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
