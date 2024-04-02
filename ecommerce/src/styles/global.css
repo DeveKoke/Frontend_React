@@ -17,6 +17,13 @@ input[type=text], input[type=email]{
     height: 30px;
     text-indent: 15px;
 }
+a, Link{
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+a:hover, Link:hover{
+    color: var(--dark-medium-color);
+}
 /* TOGGLE THEME CLASSES */
 .link-light, .link-dark{
     text-decoration: none;

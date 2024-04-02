@@ -15,10 +15,10 @@ const Header = ({ setSearchTerm }) => {
   };
 
   const [itemQuantity, setItemQuantity] = useState(0)
-  const {itemsList} = useContext(TrolleyContext);
+  const {itemsCart} = useContext(TrolleyContext);
   useEffect(() => {
-    setItemQuantity(itemsList.length);
-  }, [itemsList])
+    setItemQuantity(itemsCart.length);
+  }, [itemsCart])
 
   return (
   <>
@@ -32,8 +32,8 @@ const Header = ({ setSearchTerm }) => {
         </ul>
         <input placeholder='Buscar productos' type="text" className='header-search-box' onChange={handleSearchChange}/>
         <div className='header-icon-container'>
-          <img className='header-icon'src="/themes.png" alt= "cambiar tema" onClick={toggleThemeHandler}/>
-          <img className='header-icon' src="/heart.png" alt="favoritos" />
+          <img className='header-icon'src="/themes.png" alt= "cambiar tema" style={{height:'2em'}} onClick={toggleThemeHandler}/>
+          <img className='header-icon' src="/heart.png" alt="favoritos" style={{height:'2em'}} />
           <Link to={'login'}> <img className='header-icon' src="/avatar.png" alt="login usuario" /></Link>
           <Link to="/cart"><div className='trolley-container'><img className='header-icon' src="/shopping-cart.png" alt="carrito" />{itemQuantity > 0 && <span className="numberTrolley">{itemQuantity}</span>}</div></Link> 
           {/* <div><img className='header-icon' src="/shopping-cart.png" alt="carrito" /><span className="numberTrolley">  {itemQuantity}  </span> </div>  */}

@@ -1,17 +1,22 @@
+// HOOKS
 import { useRef, useContext} from 'react';
 import { useUserHandleInfo } from '../../reducer/userForm_Reducer.js';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../customHooks/useAuth.js';
+// COMPONENTES
 import { OfferContext } from '../../context/OfferContext.jsx';
 //Estilos
 import '../../styles/LoginForm.css';
 
-
 const LoginForm = () => {
-  const {setUserName} = useContext(OfferContext)
-  const [userInfo, dispatch] = useUserHandleInfo();
+  const {setUserName} = useContext(OfferContext)  //context para tener disponible el nombre del usuario en otros componentes.
+  const [userInfo, dispatch] = useUserHandleInfo(); //CustomHook con useReducer para manejar estado del login y almacenarlo en LS
   const nombreRef = useRef();
   const emailRef = useRef();
+  const {login} = useAuth();  //traemos la función login para cambiar el estado del login procedente del AuthContext desde useAuth.
+  const navigate = useNavigate();
 
-  //Funcion de Submit 
+  //Funcion de Submit del loginForm
   const handleSubmit = (event) => {
     event.preventDefault();
     // Guardamos la info del usuario en localStorage
@@ -20,7 +25,10 @@ const LoginForm = () => {
     // Limpiamos los inputs del formulario
     nombreRef.current.value = '';
     emailRef.current.value = '';
-    setUserName(userInfo.nombre);
+
+    setUserName(userInfo.nombre); //actualizamos el nombre del usuario para que aparezca en el bunner de Offer
+    login(); // Cambiamos el estado del estado del login a true a través de la función login.
+    navigate('/'); //una vez logueado enviamos al usuario a la ruta deseada.
   };
 
   const handleChange = (event) => {

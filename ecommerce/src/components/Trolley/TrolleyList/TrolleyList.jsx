@@ -3,7 +3,7 @@ import { TrolleyContext } from "../../../context/TrolleyContext.jsx";
 import '../../../styles/TrolleyList.css'
 
 const TrolleyList = () => {
-  const { itemsCart } = useContext(TrolleyContext);
+  const { itemsCart, setItemsCart } = useContext(TrolleyContext);
   const [totalPrice, setTotalPrice] = useState(0)
 
   const totalItems = {};  //Contar cuántas veces se repite el mismo producto dentro de itemList
@@ -46,16 +46,28 @@ const TrolleyList = () => {
       ))
   }
 
+  const deleteCartProducts = () => {
+    setItemsCart([])
+  }
+
+  const endPurchase = () => {
+    alert('Estás a punto de ser dirigido a la pasarela de pago, ¿seguro que quieres continuar?')
+    setItemsCart([])
+  }
 
   return (
     <>
-      <section className="Trolley-Section">
+      <article className="Trolley-Section">
         <h2>Tu carrito:</h2>
           <div className="TrolleyContainer">
             {printItemList()}
           </div>
         <h3>Total a pagar: ${totalPrice}</h3>
-      </section>
+        <div className="trolley-manage-buttons">
+            <button onClick={deleteCartProducts}>Eliminar todos los productos</button>
+            <button onClick={endPurchase}>Finalizar compra</button>
+        </div>
+      </article>
     </>
   );
 };
