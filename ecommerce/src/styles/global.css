@@ -5,6 +5,9 @@
 body{
     margin: 0;
 }
+h1{
+    font-family: 'Madimi One';
+}
 ul{
     padding-left: 15px;
 }
@@ -19,11 +22,12 @@ input[type=text], input[type=email]{
 }
 a, Link{
     text-decoration: none;
-    color: var(--secondary-color);
+    /* color: var(--secondary-color); */
 }
 a:hover, Link:hover{
     color: var(--dark-medium-color);
 }
+
 /* TOGGLE THEME CLASSES */
 .link-light, .link-dark{
     text-decoration: none;
@@ -35,4 +39,41 @@ a:hover, Link:hover{
 .theme-dark, .link-dark{
     background-color: var(--secondary-color);
     color: var(--primary-color);
+}
+.dark-link{
+    color: var(--primary-color);
+}
+.dark-link:hover{
+    color: var(--dark-hover-text);
+}
+
+/* BUTTONS */
+.dark-first-button, .light-first-button{
+    margin: 1em 1.2em;
+    border-radius: 28px;
+    padding: 10px 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.15em;
+    border: solid 2px ;
+}
+.dark-first-button:hover, .light-first-button:hover, .light-product-card-button:hover, .dark-product-card-button:hover {
+    cursor: pointer;
+}
+.dark-first-button{
+    background-color: var(--dark-blue-color);
+    color: var(--primary-color);
+    border-color: var(--third-color);
+}
+.light-first-button{
+    background-color: var(--third-color);
+}
+.light-first-button:hover{
+    background-color: var(--light-hover-bg);
+    border-color: var(--dark-blue-color);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.dark-first-button:hover{
+    background-color: var(--dark-hover-bg);
+    color: var(--dark-hover-text);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

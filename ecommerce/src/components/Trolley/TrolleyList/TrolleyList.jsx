@@ -1,10 +1,13 @@
 import {useContext, useState, useEffect } from "react";
 import { TrolleyContext } from "../../../context/TrolleyContext.jsx";
+import { ThemeContext } from '../../../context/ThemeContext.jsx';
+import {Link} from 'react-router-dom';
 import '../../../styles/TrolleyList.css'
 
 const TrolleyList = () => {
+  const { toggleTheme } = useContext(ThemeContext);
   const { itemsCart, setItemsCart } = useContext(TrolleyContext);
-  const [totalPrice, setTotalPrice] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const totalItems = {};  //Contar cuántas veces se repite el mismo producto dentro de itemList
   itemsCart.forEach(item => {
@@ -58,15 +61,23 @@ const TrolleyList = () => {
   return (
     <>
       <article className="Trolley-Section">
-        <h2>Tu carrito:</h2>
+              
+        {parseFloat(totalPrice) === 0 ? (<>
+          <h3>Todavía no tienes ningún artículo añadido a tu carrito.</h3>
+          <Link to='/'> <button className={`${toggleTheme}-first-button`} >Ir a comprar</button></Link> 
+        </>) : (
+          <>
+           <h2>Tu carrito:</h2>
           <div className="TrolleyContainer">
             {printItemList()}
           </div>
-        <h3>Total a pagar: ${totalPrice}</h3>
-        <div className="trolley-manage-buttons">
-            <button onClick={deleteCartProducts}>Eliminar todos los productos</button>
-            <button onClick={endPurchase}>Finalizar compra</button>
-        </div>
+          <h3>Total a pagar: ${totalPrice}</h3>
+          <div className="trolley-manage-buttons">
+              <button className={`${toggleTheme}-first-button`} onClick={deleteCartProducts}>Eliminar todos los productos</button>
+              <button className={`${toggleTheme}-first-button`} onClick={endPurchase}>Finalizar compra</button>
+          </div>
+          </>
+        ) }
       </article>
     </>
   );

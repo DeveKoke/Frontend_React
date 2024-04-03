@@ -8,4 +8,7 @@
     --dark-blue-color: rgb(26, 38, 72);
     --third-color: rgb(210, 203, 203);
     --dark-medium-color: rgb(89, 89, 126);
+    --dark-hover-text: rgb(208, 196, 181);
+    --light-hover-bg: rgb(191, 206, 225);
+    --dark-hover-bg:  rgb(56, 78, 139);
 }

@@ -34,11 +34,42 @@
     text-overflow: ellipsis;
     -webkit-line-clamp: 4;
 }
-.product-card-price{
+.light-product-card-price, .dark-product-card-price{
     width: 90%;
     text-align: left;
     margin: 5px 0;
-    color: var(--first-blue-color);
+    font-size: 1.2em;
     font-weight: bolder;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.light-product-card-price{
+    color: var(--first-blue-color);
+}
+.dark-product-card-price{
+    color: var(--third-color);
+}
+
+/* BUTTONS */
+.light-product-card-button, .dark-product-card-button{
+    width: 100%;
+    padding: 6px;
+    border-radius: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.15em;
+    border: solid 2px ;
+}
+.light-product-card-button{
+    background-color: var(--dark-medium-color);
+    color: var(--third-color);
+    border-color: var(--dark-blue-color);
+}
+.dark-product-card-button{
+    border-color: var(--dark-medium-color);
+}
+.light-product-card-button:hover{
+    background-color: var(--light-hover-bg);
+    color: var(--dark-blue-color);
+}
+.dark-product-card-button:hover{
+    background-color: var(--light-hover-bg);
 }

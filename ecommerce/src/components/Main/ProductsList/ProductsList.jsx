@@ -33,12 +33,12 @@ const ProductsList = ({...props}) => {
        
          <div className= {`product-list-card product-list-card-theme${toggleTheme}`}>
           <div className='product-card-details'>
-          <Link to={`/products/${props.id}`}><img src={props.img} alt={props.title} className='product-card-img'/>
+          <Link to={`/products/${props.id}`} className={`${toggleTheme}-link`}><img src={props.img} alt={props.title} className='product-card-img'/>
             <h3>{props.title}</h3>
             <p className='product-card-description'>{props.description} </p></Link>
           </div>
-          <p className='product-card-price'>${props.price} </p>
-          {userAuth ? (<button onClick={() => handleItem(props.title, props.price, props.img, props.id)}>Añadir al carrito</button>) : (<Link to='/login'><button>Entra en tu cuenta para añadir al carrito</button></Link>) }
+          <p className={`${toggleTheme}-product-card-price`}>${props.price} </p>
+          {userAuth ? (<button className={`${toggleTheme}-product-card-button`} onClick={() => handleItem(props.title, props.price, props.img, props.id)}>Añadir al carrito</button>) : (<Link to='/login'><button>Entra en tu cuenta para añadir al carrito</button></Link>) }
         </div>
       
     </>

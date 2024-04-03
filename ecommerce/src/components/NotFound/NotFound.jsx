@@ -4,9 +4,11 @@ import '../../styles/NotFound.css';
 const NotFound = () => {
   return (
     <>
-        <h1>Sorry, page not found.</h1>
-
-        <Link to={'/'}><h3>volver a la página principal</h3></Link> 
+    <div className='notFoundWrapper'>
+        <h1>Ooops, página no encontrada.</h1>
+        <img className='notFoundImg' src="/site-not-found.png" alt="robot durmiendo" />
+        <Link to={'/'}><button className='first-button'>Volver a la página principal</button></Link> 
+    </div>
     </>
   );
 };  
