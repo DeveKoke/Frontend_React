@@ -14,12 +14,12 @@
 .product-list-card-themelight{
     background-color: rgb(226, 226, 236);
     color: var(--dark-blue-color);
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border: 3px solid var(--dark-medium-color);
 }
 .product-list-card-themedark{
-    background-color: var(--dark-blue-color);
+    background-color: var(--dark-hover-bg);
     color: var(--third-color);
-    box-shadow: rgba(244, 242, 242, 0.7) 0px 2px 8px 0px;
+    border: 3px solid var(--third-color);
 }
 
 .product-card-img{

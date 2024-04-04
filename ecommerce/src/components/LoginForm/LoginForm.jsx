@@ -4,8 +4,9 @@ import { useUserHandleInfo } from '../../reducer/userForm_Reducer.js';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../customHooks/useAuth.js';
 import { ThemeContext } from '../../context/ThemeContext.jsx';
-// COMPONENTES
 import { OfferContext } from '../../context/OfferContext.jsx';
+// COMPONENTES
+import Offer from '../Main/Offer/Offer.jsx'
 //Estilos
 import '../../styles/LoginForm.css';
 
@@ -49,8 +50,9 @@ const LoginForm = () => {
 
   return (
     <>
- { userAuth ? (
+      { userAuth ? (
         <>
+        <Offer/>
         <div className='profileWrapper'>
             <h1>Bienvenido a tu perfil, {userName}</h1>
             <button className={`${toggleTheme}-first-button`} onClick={handleLogOut}>Logout</button>

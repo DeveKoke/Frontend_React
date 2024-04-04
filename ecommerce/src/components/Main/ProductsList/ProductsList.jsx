@@ -38,7 +38,7 @@ const ProductsList = ({...props}) => {
             <p className='product-card-description'>{props.description} </p></Link>
           </div>
           <p className={`${toggleTheme}-product-card-price`}>${props.price} </p>
-          {userAuth ? (<button className={`${toggleTheme}-product-card-button`} onClick={() => handleItem(props.title, props.price, props.img, props.id)}>Añadir al carrito</button>) : (<Link to='/login'><button>Entra en tu cuenta para añadir al carrito</button></Link>) }
+          {userAuth ? (<button className={`${toggleTheme}-product-card-button`} onClick={() => handleItem(props.title, props.price, props.img, props.id)}>Añadir al carrito</button>) : (<Link to='/login'><button className={`${toggleTheme}-product-card-button`}>Entra en tu cuenta para añadir  este producto al carrito</button></Link>) }
         </div>
       
     </>
