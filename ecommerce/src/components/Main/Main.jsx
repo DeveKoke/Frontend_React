@@ -2,17 +2,29 @@ import '../../styles/global.css';
 import '../../styles/Main.css';
 import Offer from './Offer/Offer.jsx';
 import ProductsList from './ProductsList/ProductsList.jsx';
-import {ecommerceData} from './index.js';
-import { useContext } from 'react';
+// import {ecommerceData} from './index.js';
+import  useProducts  from '../../customHooks/useProducts.js';
+import { useContext, useEffect } from 'react';
 import { ThemeContext } from '../../context/ThemeContext.jsx';
 
 const Main = ({searchTerm}) => {
-
+  const {products,
+    editProduct,
+    deleteProduct,
+    createProduct,
+    handleEditProductDetails,
+    handleSave,
+    handleInputChange,
+    getProdutcts,} = useProducts();
   const { toggleTheme } = useContext(ThemeContext);
   
+  useEffect(() => {
+    getProdutcts();
+  }, []);
+
   //Filtrar para la búsqueda.
   const printProductList = () => {
-    const filteredProducts = ecommerceData.filter(item =>
+    const filteredProducts = products.filter(item =>
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     
