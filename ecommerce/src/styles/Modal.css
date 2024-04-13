@@ -17,5 +17,5 @@
     input{
         margin-bottom: 15px;
     }
-    border: solid 2px var(--light-hover-bg);
+    border: solid 6px var(--dark-hover-text);
 }

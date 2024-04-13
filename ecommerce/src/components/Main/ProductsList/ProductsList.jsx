@@ -50,15 +50,15 @@ const ProductsList = ({image, title, description, id, price, handleModal}) => {
             
             {adminAuth ? (
               <div>
+                  <div className='editAdminIcons'>
+                      <img src="edit.png" alt="botón de editar" 
+                      // onClick={handleModalClick} 
+                      />
+                      <img src="delete.png" alt="botón de eliminar" onClick={handleDelete}/>
+                  </div>
               <Link to={`/products/${id}`} className={`${toggleTheme}-link`}>
                 <img src={image} alt={title} className='product-card-img'/>
               </Link>
-                  <div>
-                    <img src="edit.png" alt="botón de editar" 
-                    // onClick={handleModalClick} 
-                    />
-                    <img src="delete.png" alt="botón de eliminar" onClick={handleDelete}/>
-                  </div>
               </div>
             ) : <Link to={`/products/${id}`} className={`${toggleTheme}-link`}>
               <img src={image} alt={title} className='product-card-img'/>

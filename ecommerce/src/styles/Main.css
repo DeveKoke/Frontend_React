@@ -19,6 +19,7 @@
     font-size: 70px;
 }
 .addProductAdminButton:hover{
-    background-color: rgb(68, 106, 189)
+    background-color: rgb(68, 106, 189);
+    cursor: pointer;
 }
 
