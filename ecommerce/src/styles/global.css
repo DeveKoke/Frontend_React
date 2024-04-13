@@ -15,8 +15,8 @@ li{
     text-decoration: none;
     list-style: none;
 }
-input[type=text], input[type=email]{
-    border-radius: 28px;
+input[type=text], input[type=email], textarea{
+    border-radius: 17px;
     height: 30px;
     text-indent: 15px;
 }

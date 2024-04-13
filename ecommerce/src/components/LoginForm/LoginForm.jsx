@@ -17,13 +17,17 @@ const LoginForm = () => {
   const [userInfo, dispatch] = useUserHandleInfo(); //CustomHook con useReducer para manejar estado del login y almacenarlo en LS
   const nombreRef = useRef();
   const emailRef = useRef();
-  const {login, logout, userAuth} = useAuth();  //traemos la función login para cambiar el estado del login procedente del AuthContext desde useAuth.
+  const {userLogin, userLogout, userAuth, adminAuth, adminLogin, adminLogout} = useAuth();  //traemos la función login para cambiar el estado del login procedente del AuthContext desde useAuth.
   const navigate = useNavigate();
   const location = useLocation(); //configurado desde el componente LoginForm
 
   //Funcion de Submit del loginForm
   const handleSubmit = (event) => {
     event.preventDefault();
+    userInfo.nombre === 'admin' && userInfo.email === 'admin@admin' ?  
+    adminLogin() : userLogin(); // Cambiamos el estado del estado del login a true a través de la función login.
+
+    
     // Guardamos la info del usuario en localStorage
     localStorage.setItem('user', JSON.stringify(userInfo));
     console.log(userInfo);
@@ -33,7 +37,6 @@ const LoginForm = () => {
     emailRef.current.value = '';
 
     setUserName(userInfo.nombre); //actualizamos el nombre del usuario para que aparezca en el bunner de Offer
-    login(); // Cambiamos el estado del estado del login a true a través de la función login.
     navigate(location.state.pathname); //una vez logueado enviamos al usuario a la ruta deseada. 
     // location.state.pathname es la ruta que se encontraba antes de que el usuario se logueara. 
     //state ofrece un objeto con información. Pathname ofrece la última ruta encontrada.
@@ -45,12 +48,12 @@ const LoginForm = () => {
   };
 
   const handleLogOut = () => {
-    logout();
+    adminAuth ? adminLogout() : userLogout()
   }
 
   return (
     <>
-      { userAuth ? (
+      { userAuth || adminAuth ? (
         <>
         <Offer/>
         <div className='profileWrapper'>

@@ -1,0 +1,21 @@
+@import './variables.css';
+
+
+.modalcontainer{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    color: var(--primary-color);
+    top: 25%;
+    left: 38%;
+    background-color: var(--dark-hover-bg);
+    padding: 2em 4em;
+    label{
+        margin: 10px 0 5px;
+    }
+    input{
+        margin-bottom: 15px;
+    }
+    border: solid 2px var(--light-hover-bg);
+}

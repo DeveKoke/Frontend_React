@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const API_URL = 'http://localhost:3000/products';
+// const API_PRODUCT = `${API_URL}/:id`;
+
 
 const  useProducts = () =>{
     const [products, setProducts] = useState([]);
@@ -24,30 +26,16 @@ const  useProducts = () =>{
             console.log(error);
         }
     }
-    const deleteProduct = async(id) => {
-        try{
-            await axios.delete(`${API_URL}/${id}`);
-            setProducts((prevProducts) => 
-            prevProducts.filter((product) => product.id !==id));
-        }catch(error){
-            console.log('error deleting product',error);
-        }
-    }
-    const handleSave = () => {
-        if (editedProduct.id !== null){
-            editedProduct();
-        }else{
-            createProduct();
-        }
-    };
 
-    const createProduct = async() => {
+    const createProduct = async(newProductData) => {
         try{
             const newId = products.length ? products[products.length - 1].id + 1 : 1;
-            const newProduct = {...editedProduct, id:newId}
+            const newProduct = {...newProductData, id:newId}
+            console.log(newProduct);
             const response = await axios.post(API_URL, newProduct);
             setProducts((prevProducts) => [...prevProducts, response.data]);
             setEditedProduct({id:null, title:'', price:'', img:''});
+            console.log(products);
         }catch(error){
             console.log('error adding product', error);
         }
@@ -65,6 +53,26 @@ const  useProducts = () =>{
         }
     };
 
+    const deleteProduct = async(id) => {
+        try{
+            console.log(id);
+            await axios.delete(`${API_URL}/${id}`);
+            setProducts((prevProducts) => 
+            prevProducts.filter((product) => product.id !==id));
+            console.log(products);
+        }catch(error){
+            console.log('error deleting product',error);
+        }
+    };
+
+    const handleSave = () => {
+        if (editedProduct.id !== null){
+            editedProduct();
+        }else{
+            createProduct();
+        }
+    };
+
     const handleInputChange = (e) => {
         const {name, value} =  e.target;
         setEditedProduct ({...editedProduct, [name]:value});
@@ -74,6 +82,7 @@ const  useProducts = () =>{
         const selectedProduct =  products.find((product) => product.id === id);
         setEditedProduct([...selectedProduct, title, price])
     };
+
     return {
         products,
         editProduct,
@@ -82,7 +91,7 @@ const  useProducts = () =>{
         handleEditProductDetails,
         handleSave,
         handleInputChange,
-        getProdutcts,
-    }
+        getProdutcts
+       }
 }
 export default useProducts;

@@ -7,5 +7,18 @@
     padding: 15px;
 }
 
-
+.addProductAdminButton{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 25px;
+    border-radius: 10px;
+    background-color: rgb(53, 82, 145);
+    color: white;
+    font-weight: bolder;
+    font-size: 70px;
+}
+.addProductAdminButton:hover{
+    background-color: rgb(68, 106, 189)
+}
 

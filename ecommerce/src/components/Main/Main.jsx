@@ -1,11 +1,15 @@
 import '../../styles/global.css';
 import '../../styles/Main.css';
+// COMPONENTS
 import Offer from './Offer/Offer.jsx';
 import ProductsList from './ProductsList/ProductsList.jsx';
-// import {ecommerceData} from './index.js';
+import Modal from './Modal/Modal.jsx';
+// HOOKS
 import  useProducts  from '../../customHooks/useProducts.js';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../../context/ThemeContext.jsx';
+import { useAuth } from '../../customHooks/useAuth.js';
+// import {ecommerceData} from './index.js';
 
 const Main = ({searchTerm}) => {
   const {products,
@@ -17,11 +21,16 @@ const Main = ({searchTerm}) => {
     handleInputChange,
     getProdutcts,} = useProducts();
   const { toggleTheme } = useContext(ThemeContext);
-  
-  useEffect(() => {
-    getProdutcts();
-  }, []);
+  const [activeEditionModal, setActiveEditionModal] = useState(false);
+  const {adminAuth} = useAuth();
 
+    useEffect(() => {
+    getProdutcts();
+  }, [products]);
+  
+  const handleModal = () => {
+  setActiveEditionModal(true);
+  }
   //Filtrar para la búsqueda.
   const printProductList = () => {
     const filteredProducts = products.filter(item =>
@@ -32,18 +41,22 @@ const Main = ({searchTerm}) => {
       <ProductsList
         title={item.title}
         description={item.description}
-        img={item.image}
+        image={item.image}
         price={item.price}
         id={item.id}
-        key={item.id} />
+        key={item.id} 
+        // handleModal={handleModal}
+        />
     )) ;
   };
   
   return (
 <>
     <Offer/>
+    {activeEditionModal && <Modal  handleModal={setActiveEditionModal} /> }
     <section className={`product-list-wrapper theme-${toggleTheme}`}>
         {printProductList()}
+    {adminAuth && <button className='addProductAdminButton' onClick={handleModal} > + </button>}
     </section>
       
 </>
