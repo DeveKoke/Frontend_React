@@ -2,19 +2,21 @@ import { useRef } from 'react';
 import useProducts from '../../../customHooks/useProducts.js';
 import '../../../styles/Modal.css'
 
-const Modal = ({handleModal}) => {
+const Modal = ({handleModal, editId}) => {
     const {
         createProduct,
         handleInputChange,
+        editProduct,
     } = useProducts();
 
     // Refs para los campos de entrada del formulario
+    const IdRef = useRef(null);
     const titleRef = useRef(null);
     const descriptionRef = useRef(null);
     const imageRef = useRef(null);
     const priceRef = useRef(null);
 
-    // Usamos la info de los inputs para el nuevo producto
+    // EJECUTAMOS LA FUNCIÓN PARA CREAR PRODUCTO: Usamos la info de los inputs para el nuevo producto
     const handleCreateProduct = () => {
         const newProductData = {
             title: titleRef.current.value,
@@ -32,38 +34,58 @@ const Modal = ({handleModal}) => {
         imageRef.current.value = '';
         priceRef.current.value = '';
         
-        handleModal(false);
+        handleModal(false); //Quitamos el modal
     };
 
+    // EJECUTAMOS LA FUNCIÓN PARA EDITAR PRODUCTO
+    const handleEditProduct = () => {
+        // Actualizamos el estado de EditedProduct.
+        const productNewData = {
+            id: parseInt(IdRef.current.value),
+            image: imageRef.current.value,
+            title: titleRef.current.value,
+            description: descriptionRef.current.value,
+            price: priceRef.current.value,
+        };
+
+        // Ejecutamos la función de edición del useProducts.
+        editProduct(productNewData)
+        handleModal(false); //Quitamos el modal
+    }
+ 
     return (
         <>
         <section className='modalcontainer'>
-            <label>Title:</label>
+            {editId && (<> <label>Introduce el ID del producto a editar :</label>
+            <input type="text" ref={IdRef} /></>)
+            }
+
+            <label>Título:</label>
             <input
                 type="text"
                 ref={titleRef}
                 onChange={handleInputChange}
             />
-            <label>Description:</label>
+            <label>Descripción:</label>
             <textarea
                 ref={descriptionRef}
                 rows={5}
                 cols={5}
                 onChange={handleInputChange}
             />
-            <label>Image:</label>
+            <label>Imagen:</label>
             <input
                 type="text"
                 ref={imageRef}
                 onChange={handleInputChange}
             />
-            <label>Price:</label>
+            <label>Precio:</label>
             <input
                 type="number"
                 ref={priceRef}
                 onChange={handleInputChange}
             />
-            <button className='light-first-button' onClick={handleCreateProduct}>Create Product</button>
+            <button className='light-first-button' onClick={editId ? handleEditProduct : handleCreateProduct}>{editId ? '  Editar producto  ' : 'Crear producto'}</button>
         </section>
         </>
     );

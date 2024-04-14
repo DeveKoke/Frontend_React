@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const API_URL = 'http://localhost:3000/products';
-// const API_PRODUCT = `${API_URL}/:id`;
-
 
 const  useProducts = () =>{
+    const [uniqueItem, setUniqueItem] = useState({})
     const [products, setProducts] = useState([]);
     const [editedProduct, setEditedProduct] = useState({
-        id:null,
+        id:0,
+        img: '',
         title: '',
-        price: '',
-        img: ''
+        description: '',
+        price: ''
     });
     
     useEffect(() => {
@@ -25,25 +25,32 @@ const  useProducts = () =>{
         } catch(error){
             console.log(error);
         }
-    }
+    };
+
+    const getOneProduct = async(id) =>{
+        try{
+            const response = await axios.get(`${API_URL}/${id}`);
+            setUniqueItem(response.data); 
+        } catch(error){
+            console.log(error);
+        }
+    };
 
     const createProduct = async(newProductData) => {
         try{
             const newId = products.length ? products[products.length - 1].id + 1 : 1;
             const newProduct = {...newProductData, id:newId}
-            console.log(newProduct);
             const response = await axios.post(API_URL, newProduct);
             setProducts((prevProducts) => [...prevProducts, response.data]);
             setEditedProduct({id:null, title:'', price:'', img:''});
-            console.log(products);
         }catch(error){
             console.log('error adding product', error);
         }
     };
 
-    const editProduct = async() => {
+    const editProduct = async(productNewData) => {
         try{
-            const response = await axios.put(`${API_URL}/${editedProduct.id}`, editedProduct);
+            const response = await axios.put(`${API_URL}/${productNewData.id}`, productNewData);
             const updateProduct = response.data;
             setProducts((prevProducts) => prevProducts.map((product) => product.id === updateProduct.id ? updateProduct : product));
             setEditedProduct({id:null, title:'', price:'', img:''});
@@ -85,13 +92,15 @@ const  useProducts = () =>{
 
     return {
         products,
+        uniqueItem,
         editProduct,
         deleteProduct,
         createProduct,
         handleEditProductDetails,
         handleSave,
         handleInputChange,
-        getProdutcts
+        getProdutcts,
+        getOneProduct
        }
 }
 export default useProducts;

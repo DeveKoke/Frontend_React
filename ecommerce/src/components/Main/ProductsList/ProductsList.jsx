@@ -3,24 +3,17 @@ import '../../../styles/global.css';
 import '../../../styles/ProductsList.css';
 // HOOKS
 import { useContext } from 'react';
-import useProducts from '../../../customHooks/useProducts.js';
 import { ThemeContext } from '../../../context/ThemeContext.jsx';
 import { TrolleyContext } from '../../../context/TrolleyContext.jsx';
 import { useAuth } from '../../../customHooks/useAuth.js';
 import { Link } from 'react-router-dom';
+import useProducts from '../../../customHooks/useProducts.js';
 
-const ProductsList = ({image, title, description, id, price, handleModal}) => {
+const ProductsList = ({image, title, description, id, price, handleModal, setEditId}) => {
   const { toggleTheme } = useContext(ThemeContext);
   const { itemsCart, setItemsCart } = useContext(TrolleyContext);
   const {userAuth, adminAuth} = useAuth();
-  const {products,
-    editProduct,
-    deleteProduct,
-    createProduct,
-    handleEditProductDetails,
-    handleSave,
-    handleInputChange,
-    getProdutcts,} = useProducts();
+  const {deleteProduct} = useProducts();
 
   const handleItem = (itemName, itemPrice, itemImg, itemId) => {
     const itemInfo = {
@@ -33,13 +26,14 @@ const ProductsList = ({image, title, description, id, price, handleModal}) => {
     console.log(itemsCart);
   }
 
-  // const handleModalClick = () => {
-  //  handleModal(true)
-  // };
+  const handleModalClick = () => {
+   handleModal(true);
+   setEditId(true);
+  };
   const handleDelete = () => {
-    console.log(`el ID es ${id}`);
     deleteProduct(id)
-  }
+  };
+
 
 
   return (
@@ -51,9 +45,7 @@ const ProductsList = ({image, title, description, id, price, handleModal}) => {
             {adminAuth ? (
               <div>
                   <div className='editAdminIcons'>
-                      <img src="edit.png" alt="botón de editar" 
-                      // onClick={handleModalClick} 
-                      />
+                      <img src="edit.png" alt="botón de editar"  onClick={handleModalClick}/>
                       <img src="delete.png" alt="botón de eliminar" onClick={handleDelete}/>
                   </div>
               <Link to={`/products/${id}`} className={`${toggleTheme}-link`}>

@@ -12,25 +12,20 @@ import { useAuth } from '../../customHooks/useAuth.js';
 // import {ecommerceData} from './index.js';
 
 const Main = ({searchTerm}) => {
-  const {products,
-    editProduct,
-    deleteProduct,
-    createProduct,
-    handleEditProductDetails,
-    handleSave,
-    handleInputChange,
-    getProdutcts,} = useProducts();
+  const {products, getProdutcts,} = useProducts();
   const { toggleTheme } = useContext(ThemeContext);
-  const [activeEditionModal, setActiveEditionModal] = useState(false);
+  const [activeModal, setActiveModal] = useState(false);
+  const [editId, setEditId] = useState(false);
   const {adminAuth} = useAuth();
 
-    useEffect(() => {
+  useEffect(() => {
     getProdutcts();
   }, [products]);
   
   const handleModal = () => {
-  setActiveEditionModal(true);
-  }
+  setActiveModal(true);
+  };
+  
   //Filtrar para la búsqueda.
   const printProductList = () => {
     const filteredProducts = products.filter(item =>
@@ -45,21 +40,22 @@ const Main = ({searchTerm}) => {
         price={item.price}
         id={item.id}
         key={item.id} 
-        // handleModal={handleModal}
+        handleModal={handleModal}
+        setEditId={setEditId}
         />
     )) ;
   };
   
   return (
-<>
-    <Offer/>
-    {activeEditionModal && <Modal  handleModal={setActiveEditionModal} /> }
-    <section className={`product-list-wrapper theme-${toggleTheme}`}>
-        {printProductList()}
-    {adminAuth && <button className='addProductAdminButton' onClick={handleModal} > + </button>}
-    </section>
-      
-</>
+  <>
+      <Offer/>
+      {activeModal && <Modal editId={editId} handleModal={setActiveModal} /> }
+      <section className={`product-list-wrapper theme-${toggleTheme}`}>
+          {printProductList()}
+      {adminAuth && <button className='addProductAdminButton' onClick={handleModal} > + </button>}
+      </section>
+        
+  </>
 
   );
 };
