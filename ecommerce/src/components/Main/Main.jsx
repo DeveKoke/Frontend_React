@@ -9,25 +9,31 @@ import  useProducts  from '../../customHooks/useProducts.js';
 import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../../context/ThemeContext.jsx';
 import { useAuth } from '../../customHooks/useAuth.js';
+import { useSelector, useDispatch } from 'react-redux';
+import { setGetAllProducts } from '../../reducer/itemsReducer.js';
 // import {ecommerceData} from './index.js';
 
 const Main = ({searchTerm}) => {
-  const {products, getProdutcts,} = useProducts();
+  const products = useSelector((state) => state.items.products);
+  const dispatch = useDispatch();
+  const {getProductsCollection} = useProducts();
   const { toggleTheme } = useContext(ThemeContext);
   const [activeModal, setActiveModal] = useState(false);
   const [editId, setEditId] = useState(false);
   const {adminAuth} = useAuth();
-
+  
   useEffect(() => {
-    getProdutcts();
-  }, [products]);
+    getProductsCollection()
+    // dispatch(setGetAllProducts())
+  }, [dispatch]);
   
   const handleModal = () => {
-  setActiveModal(true);
+    setActiveModal(true);
   };
   
   //Filtrar para la búsqueda.
   const printProductList = () => {
+    console.log(products);
     const filteredProducts = products.filter(item =>
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -43,8 +49,12 @@ const Main = ({searchTerm}) => {
         handleModal={handleModal}
         setEditId={setEditId}
         />
-    )) ;
-  };
+      )) ;
+    };
+    
+    useEffect(() => {
+      printProductList();
+}, [products]);
   
   return (
   <>
