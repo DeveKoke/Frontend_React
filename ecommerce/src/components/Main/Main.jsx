@@ -2,7 +2,7 @@ import '../../styles/global.css';
 import '../../styles/Main.css';
 // COMPONENTS
 import Offer from './Offer/Offer.jsx';
-import ProductsList from './ProductsList/ProductsList.jsx';
+import ProductsCard from './ProductsCard/ProductsCard.jsx';
 import Modal from './Modal/Modal.jsx';
 // HOOKS
 import  useProducts  from '../../customHooks/useProducts.js';
@@ -22,24 +22,25 @@ const Main = ({searchTerm}) => {
   const [editId, setEditId] = useState(false);
   const {adminAuth} = useAuth();
   
+  console.log(products);
   useEffect(() => {
     getProductsCollection()
     // dispatch(setGetAllProducts())
-  }, [dispatch]);
+  }, []);
   
   const handleModal = () => {
     setActiveModal(true);
   };
+
   
   //Filtrar para la búsqueda.
-  const printProductList = () => {
-    console.log(products);
+  const printProductsCards = () => {
     const filteredProducts = products.filter(item =>
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     
     return filteredProducts.map(item => (
-      <ProductsList
+      <ProductsCard
         title={item.title}
         description={item.description}
         image={item.image}
@@ -49,19 +50,20 @@ const Main = ({searchTerm}) => {
         handleModal={handleModal}
         setEditId={setEditId}
         />
-      )) ;
-    };
+    )) ;
+  };
     
     useEffect(() => {
-      printProductList();
-}, [products]);
+      printProductsCards();
+  }, [products]);
   
   return (
+
   <>
       <Offer/>
       {activeModal && <Modal editId={editId} handleModal={setActiveModal} /> }
       <section className={`product-list-wrapper theme-${toggleTheme}`}>
-          {printProductList()}
+          {printProductsCards()}
       {adminAuth && <button className='addProductAdminButton' onClick={handleModal} > + </button>}
       </section>
         

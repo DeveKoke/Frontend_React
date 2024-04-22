@@ -1,28 +1,31 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setGetAllProducts, setGetOneProduct, setCreateProduct, setEditProduct, setUpdateProduct, setDeleteProduct } from "../reducer/itemsReducer.js";
+import { setGetAllProducts, 
+        setGetOneProduct, 
+        setCreateProduct, 
+        setEditProduct, 
+        setUpdateProduct, 
+        setDeleteProduct } from "../reducer/itemsReducer.js";
 
 const API_URL = 'http://localhost:3000/products';
-
 const useProducts = () =>{
     const dispatch = useDispatch();
     const products = useSelector((state) => state.items.products);
-
     
     useEffect(() => {
         dispatch(setGetAllProducts());
     }, [dispatch]);
-
+    
     const getProductsCollection = async() => {
-        try{
-            const response = await axios.get(API_URL);
-            const productsCollection = response.data;
-            dispatch(setGetAllProducts(productsCollection))
-        } catch(error){
-            console.log(error);
-        }
-    };
+       try{
+           const response = await axios.get(API_URL);
+           const productsCollection = response.data;
+           dispatch(setGetAllProducts(productsCollection))
+       } catch(error){
+           console.log(error);
+       }
+   };
     
     const getOneProduct = async(id) =>{
         try{

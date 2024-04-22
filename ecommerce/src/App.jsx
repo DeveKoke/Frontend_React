@@ -16,6 +16,7 @@ import { TrolleyContext } from './context/TrolleyContext.jsx';
 import { OfferContextProvider } from './context/OfferContext.jsx';
 // ESTILOS
 import './styles/global.css'; 
+ 
 
 
 function App() {
@@ -27,13 +28,13 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <BrowserRouter >
       <ThemeProvider>
         <TrolleyContext.Provider value={productsListArr} >
           <Header setSearchTerm={setSearchTerm} />
           <OfferContextProvider>
           <Routes>
-              <Route path="/" element={<Main searchTerm={searchTerm} />}/>
+              <Route path="/" element={<Main searchTerm={searchTerm}  />}/>
               <Route path='/cart' element={<ProtectedRoute><Trolley/></ProtectedRoute>}/>
               <Route path='/login' element={<LoginForm/>} />
               <Route path='products/:productID' element={<ProtectedRoute><ProductDetails/></ProtectedRoute>}/>
